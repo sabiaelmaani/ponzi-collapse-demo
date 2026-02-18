@@ -3,9 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ponzisim - Debt, Energy, Collapse Dynamics</title>
-    <link data-trunk rel="rust" data-wasm-opt="z" />
-    <link data-trunk rel="css" href="styles.css" />
+    <title>Unsustainable Growth Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <h1>This Is Why Ponzi Schemes Suck</h1>
+      </header>
+
+      <section class="panel controls" aria-label="Simulation controls">
+        <div class="control">
+          <label for="promisedReturn">Promised return per cycle (%)</label>
+          <output id="promisedReturnValue" for="promisedReturn"></output>
+          <input id="promisedReturn" type="range" min="1" max="50" step="1" value="15" />
+        </div>
+
+        <div class="control">
+          <label for="dropout">Dropout per cycle (%)</label>
+          <output id="dropoutValue" for="dropout"></output>
+          <input id="dropout" type="range" min="0" max="30" step="1" value="5" />
+        </div>
+
+        <div class="control">
+          <label for="recruitmentDecay">Recruitment slows over time (%)</label>
+          <output id="recruitmentDecayValue" for="recruitmentDecay"></output>
+          <input id="recruitmentDecay" type="range" min="0" max="30" step="1" value="6" />
+        </div>
+
+        <div class="control">
+          <label for="initialParticipants">Initial participants</label>
+          <output id="initialParticipantsValue" for="initialParticipants"></output>
+          <input id="initialParticipants" type="range" min="10" max="10000" step="10" value="500" />
+        </div>
+
+        <div class="control">
+          <label for="cycles">Cycles to simulate</label>
+          <output id="cyclesValue" for="cycles"></output>
+          <input id="cycles" type="range" min="12" max="120" step="1" value="48" />
+        </div>
+
+        <div class="control">
+          <label for="populationCap">Population cap</label>
+          <output id="populationCapValue" for="populationCap"></output>
+          <input id="populationCap" type="range" min="10000" max="100000000" step="10000" value="5000000" />
+        </div>
+
+        <div class="actions">
+          <button id="runBtn" type="button">Run</button>
+          <button id="resetBtn" type="button" class="secondary">Reset</button>
+        </div>
+      </section>
+
+      <section class="panel results" aria-live="polite">
+        <p id="summary" class="summary"></p>
+
+        <div class="chart-wrap">
+          <canvas id="chart" width="960" height="340" aria-label="Required vs actual new participants chart"></canvas>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Cycle</th>
+                <th>Active participants</th>
+                <th>Required new participants</th>
+                <th>Actual new participants</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
