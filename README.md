@@ -1,6 +1,6 @@
 # Ponzi Collapse Demo
 
-Interactive educational JavaScript demo that shows why systems that pay old participants only from new participants are mathematically unsustainable.
+Interactive educational JavaScript demo that visualizes why schemes paying old participants only from new participants are mathematically unsustainable and eventually collapse.
 
 ## Purpose
 
@@ -51,4 +51,3 @@ Collapse is triggered when either:
 - `index.html` - UI layout
 - `styles.css` - styling
 - `app.js` - simulation, table rendering, chart rendering
-
