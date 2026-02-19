@@ -1,68 +1,83 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Basic page setup -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Unsustainable Growth Demo</title>
+    <!-- We only need one CSS and one JS file for this project -->
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
   </head>
   <body>
+    <!-- Main app container -->
     <main class="app">
+      <!-- Page title area -->
       <header class="hero">
         <h1>This Is Why Ponzi Schemes Suck</h1>
       </header>
 
+      <!-- Controls users can change before running the simulation -->
       <section class="panel controls" aria-label="Simulation controls">
+        <!-- Slider: promised return per cycle -->
         <div class="control">
           <label for="promisedReturn">Promised return per cycle (%)</label>
           <output id="promisedReturnValue" for="promisedReturn"></output>
           <input id="promisedReturn" type="range" min="1" max="50" step="1" value="15" />
         </div>
 
+        <!-- Slider: how many active participants leave each cycle -->
         <div class="control">
           <label for="dropout">Dropout per cycle (%)</label>
           <output id="dropoutValue" for="dropout"></output>
           <input id="dropout" type="range" min="0" max="30" step="1" value="5" />
         </div>
 
+        <!-- Slider: recruiting ability decays over time -->
         <div class="control">
           <label for="recruitmentDecay">Recruitment slows over time (%)</label>
           <output id="recruitmentDecayValue" for="recruitmentDecay"></output>
           <input id="recruitmentDecay" type="range" min="0" max="30" step="1" value="6" />
         </div>
 
+        <!-- Slider: initial size of the participant pool -->
         <div class="control">
           <label for="initialParticipants">Initial participants</label>
           <output id="initialParticipantsValue" for="initialParticipants"></output>
           <input id="initialParticipants" type="range" min="10" max="10000" step="10" value="500" />
         </div>
 
+        <!-- Slider: how many cycles we run before stopping -->
         <div class="control">
           <label for="cycles">Cycles to simulate</label>
           <output id="cyclesValue" for="cycles"></output>
           <input id="cycles" type="range" min="12" max="120" step="1" value="48" />
         </div>
 
+        <!-- Slider: hard limit for total possible participants -->
         <div class="control">
           <label for="populationCap">Population cap</label>
           <output id="populationCapValue" for="populationCap"></output>
           <input id="populationCap" type="range" min="10000" max="100000000" step="10000" value="5000000" />
         </div>
 
+        <!-- Run uses current settings; Reset restores defaults -->
         <div class="actions">
           <button id="runBtn" type="button">Run</button>
           <button id="resetBtn" type="button" class="secondary">Reset</button>
         </div>
       </section>
 
+      <!-- Output area: summary, chart, and per-cycle table -->
       <section class="panel results" aria-live="polite">
         <p id="summary" class="summary"></p>
 
+        <!-- Canvas chart showing required vs actual newcomers -->
         <div class="chart-wrap">
           <canvas id="chart" width="960" height="340" aria-label="Required vs actual new participants chart"></canvas>
         </div>
 
+        <!-- Table with one row per simulated cycle -->
         <div class="table-wrap">
           <table>
             <thead>
